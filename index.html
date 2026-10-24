@@ -1,0 +1,198 @@
+
+<div id="hk-fire-timeline">
+  <style>
+    #hk-fire-timeline {
+      width:100%;
+      max-width:600px;
+      margin:auto;
+      background:transparent;
+      color:#f3eee9;
+      font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+    }
+    #hk-fire-timeline * {box-sizing:border-box}
+    #hk-fire-timeline .ignite {
+      display:flex; flex-direction:column; align-items:center;
+      gap:9px; margin:10px auto 28px;
+      border:0; background:transparent; color:#e9b08c;
+      cursor:pointer; font-size:12px; letter-spacing:2px;
+    }
+    #hk-fire-timeline .flame {
+      width:58px; height:58px; border-radius:50%;
+      display:grid; place-items:center;
+      border:1px solid rgba(249,151,94,.65);
+      background:rgba(230,98,47,.12);
+      box-shadow:0 0 25px rgba(230,98,47,.22);
+      transition:transform .3s,box-shadow .3s;
+    }
+    #hk-fire-timeline .flame svg {
+      width:30px;height:30px;
+      fill:#e96e3c;stroke:#ffbd7c;stroke-width:1.4;
+    }
+    #hk-fire-timeline .ignite:hover .flame {
+      transform:scale(1.08);
+      box-shadow:0 0 32px rgba(255,112,48,.5);
+    }
+    #hk-fire-timeline .track {
+      position:relative;
+      padding-left:42px;
+    }
+    #hk-fire-timeline .track::before {
+      content:"";position:absolute;left:13px;
+      top:7px;bottom:20px;width:1px;
+      background:rgba(255,255,255,.18);
+    }
+    #hk-fire-timeline .progress {
+      position:absolute;left:12px;top:7px;
+      width:3px;height:0;border-radius:3px;
+      background:linear-gradient(#ffbd84,#e3542d);
+      box-shadow:0 0 13px rgba(255,111,53,.8);
+    }
+    #hk-fire-timeline .entry {
+      position:relative;
+      min-height:86px;
+      padding-bottom:22px;
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .5s,transform .5s;
+    }
+    #hk-fire-timeline .entry.visible {
+      opacity:1;transform:translateY(0);
+    }
+    #hk-fire-timeline .dot {
+      position:absolute;left:-34px;top:6px;
+      width:12px;height:12px;border-radius:50%;
+      background:#f99c65;
+      border:2px solid #15263a;
+      box-shadow:0 0 0 3px rgba(244,120,68,.2),
+                 0 0 14px rgba(250,112,58,.45);
+    }
+    #hk-fire-timeline .date {
+      font-size:11px;
+      color:#bac8d6;
+      letter-spacing:1px;
+      margin-bottom:6px;
+    }
+    #hk-fire-timeline .time {
+      font-size:20px;font-weight:700;
+      color:#ffc096;
+      font-variant-numeric:tabular-nums;
+    }
+    #hk-fire-timeline .event {
+      margin-left:13px;
+      font-size:14px;
+      color:#f4f0eb;
+    }
+    #hk-fire-timeline .sub {
+      margin-top:6px;
+      font-size:12px;
+      color:#b7c4d2;
+    }
+    @media(prefers-reduced-motion:reduce) {
+      #hk-fire-timeline .entry {transition:none}
+      #hk-fire-timeline .progress {transition:none!important}
+    }
+  </style>
+
+  <button class="ignite" type="button" aria-label="播放时间轴">
+    <span class="flame">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 22c4.4 0 7-3.2 7-7.1 0-3.3-2-5.8-4.1-7.8.2 2.2-1.1 3.3-1.1 3.3C14 6.4 11.4 3.4 9 2c.4 4.4-4 7.2-4 12.9C5 18.8 7.7 22 12 22Z"/>
+        <path d="M12 21c2.1 0 3.5-1.6 3.5-3.5 0-1.8-1-3.1-2.1-4.1.1 1.2-.7 1.8-.7 1.8.1-2.2-1.2-3.7-2.4-4.5.1 2.3-2 4.2-2 6.8 0 1.9 1.5 3.5 3.7 3.5Z" fill="#ffc18a"/>
+      </svg>
+    </span>
+    <span class="hint">点击展开</span>
+  </button>
+
+  <div class="track">
+    <div class="progress"></div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">2025 / 11 / 26</div>
+      <span class="time">14:51</span>
+      <span class="event">消防接报</span>
+    </div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">11月26日</div>
+      <span class="time">14:56</span>
+      <span class="event">消防到场</span>
+    </div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">11月26日</div>
+      <span class="time">15:02</span>
+      <span class="event">三级火警</span>
+    </div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">11月26日</div>
+      <span class="time">15:34</span>
+      <span class="event">四级火警</span>
+    </div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">11月26日</div>
+      <span class="time">18:22</span>
+      <span class="event">五级火警</span>
+    </div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">2025 / 11 / 27</div>
+      <span class="time">21:31</span>
+      <span class="event">火势受包围</span>
+    </div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">2025 / 11 / 28</div>
+      <span class="time">03:15</span>
+      <span class="event">火势受控制</span>
+    </div>
+
+    <div class="entry">
+      <div class="dot"></div>
+      <div class="date">11月28日</div>
+      <span class="time">10:18</span>
+      <span class="event">大致扑灭</span>
+      <div class="sub">历时43小时27分钟</div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const root=document.getElementById("hk-fire-timeline");
+      const button=root.querySelector(".ignite");
+      const entries=[...root.querySelectorAll(".entry")];
+      const progress=root.querySelector(".progress");
+      let timers=[];
+
+      button.addEventListener("click",()=>{
+        timers.forEach(clearTimeout);
+        timers=[];
+        entries.forEach(e=>e.classList.remove("visible"));
+
+        progress.style.transition="none";
+        progress.style.height="0";
+        void progress.offsetHeight;
+
+        progress.style.transition="height 5.6s linear";
+        progress.style.height=
+          (root.querySelector(".track").scrollHeight-20)+"px";
+
+        entries.forEach((entry,index)=>{
+          timers.push(setTimeout(()=>{
+            entry.classList.add("visible");
+          },index*720));
+        });
+
+        root.querySelector(".hint").textContent="点击重播";
+      });
+    })();
+  </script>
+</div>
